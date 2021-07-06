@@ -19,7 +19,9 @@ go run main.go
  
 # Note
  
-Configure of Database must be matched with your environment.
+Configure of Database & YouTube API Key must be matched with your environment.
+
+.env file is at  ./golang/.env
  
 # Author
  
