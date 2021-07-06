@@ -1,0 +1,23 @@
+version: '3' # composeファイルのバーション指定
+services:
+  app: # service名
+    build: ./golang # ビルドに使用するDockerfileがあるディレクトリ指定
+    tty: true # コンテナの起動永続化
+    volumes:
+      - .:/go/src/work # マウントディレクトリ指定
+    ports:
+      - 8080:8080
+    depends_on: 
+      - db
+  db:
+    image: mysql:latest
+    container_name: dockerMysql
+    ports:
+      - "3001:3306"
+    environment: 
+      MYSQL_DATABASE: docker_go
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+    volumes: 
+      - ./tmp/mysql:/var/lib/mysql
+    command: mysqld
